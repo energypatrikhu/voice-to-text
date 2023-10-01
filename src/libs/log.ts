@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import __app from './config';
 import getCurrentTime from './getCurrentTime';
 
-export function saveToLogFile(type: '::debug::' | '::normal::', ...message: any) {
+export function saveToLogFile(type: '::debug::' | '::normal::', ...messageArray: Array<any>) {
 	if (__app.config.logs.saveToFile) {
 		let basepath = join('logs');
 
@@ -15,6 +15,14 @@ export function saveToLogFile(type: '::debug::' | '::normal::', ...message: any)
 		}
 
 		let filepath = join(basepath, __app.startupDate + '.log');
+
+		let message = messageArray.map(function (_msg: string | object) {
+			if (typeof _msg === 'object') {
+				return JSON.stringify(_msg, null, 4) + '\n';
+			}
+
+			return _msg;
+		});
 
 		switch (type) {
 			case '::debug::':
