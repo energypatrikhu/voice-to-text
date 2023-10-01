@@ -18,7 +18,7 @@ export function saveToLogFile(type: '::debug::' | '::normal::', ...messageArray:
 
 		let message = messageArray.map(function (_msg: string | object) {
 			if (typeof _msg === 'object') {
-				return JSON.stringify(_msg, null, 4) + '\n';
+				return JSON.stringify(_msg, null, 4);
 			}
 
 			return _msg;
