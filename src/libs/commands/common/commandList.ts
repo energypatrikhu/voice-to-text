@@ -1,6 +1,6 @@
 import cmd from '../../commandHandler';
 import { log, logLine } from '../../log';
-import texts from '../../text';
+import texts from '../../texts';
 
 cmd.registerCommand(() => {
 	let availabilityMap = {

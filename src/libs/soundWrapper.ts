@@ -1,7 +1,7 @@
 import __app from './config.js';
 import { debugLogLine } from './debugLog.js';
 import { logLine } from './log.js';
-import texts from './text.js';
+import texts from './texts.js';
 
 export default function soundWrapper() {
 	try {

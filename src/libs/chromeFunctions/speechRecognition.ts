@@ -9,7 +9,7 @@ import { printText } from '../pressKeys';
 import replaceCharMap from '../replaceCharMap';
 import replaceGameChatPrefixMap from '../replaceGameChatPrefixMap';
 import soundWrapper from '../soundWrapper';
-import texts, { textReplacer } from '../text';
+import texts, { textReplacer } from '../texts';
 import uioHookWrapper from '../uioHookWrapper';
 
 let _output: string = '';

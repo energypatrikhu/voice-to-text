@@ -6,7 +6,7 @@ import speechRecognitionEngine from './chromeFunctions/speechRecognitionEngine.j
 import speechSynthesis from './chromeFunctions/speechSynthesis.js';
 import __app from './config.js';
 import { debugLogLine } from './debugLog.js';
-import texts from './text.js';
+import texts from './texts.js';
 
 export default async function chromeInstance(browser: Browser, speechRecognitionOptions = {}) {
 	debugLogLine(texts().textFeedback.chromeInstance.chrome.navigating);

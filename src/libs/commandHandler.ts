@@ -7,8 +7,8 @@ import anyHas from './anyHas';
 import __app from './config';
 import { debugLogLine } from './debugLog';
 import { logLine } from './log';
-import texts from './text';
 import textParser from './textParser';
+import texts from './texts';
 
 type Command$Name = string;
 type Command$Availability = 'text' | 'speech' | 'both';

@@ -7,7 +7,7 @@ import { join } from 'node:path';
 
 import __app from '../config';
 import { logLine } from '../log';
-import texts from '../text';
+import texts from '../texts';
 import http2Wrapper from './http2Wrapper';
 import updaterWrapper from './updaterWrapper';
 

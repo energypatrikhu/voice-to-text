@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
 
 import { logLine } from '../log';
-import texts from '../text';
+import texts from '../texts';
 import checkUpdater from './checkUpdater';
 import updaterWrapper from './updaterWrapper';
 

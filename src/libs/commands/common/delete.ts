@@ -2,7 +2,7 @@ import { SpeechSynthesisConfig } from '../../../_types/SpeechSynthesisConfig';
 import cmd from '../../commandHandler';
 import { logLine } from '../../log';
 import { sendKeys } from '../../pressKeys';
-import texts, { textReplacer } from '../../text';
+import texts, { textReplacer } from '../../texts';
 
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig, previousOutputString: string, repeats: number, type: string | 'szó' | 'betű') => {

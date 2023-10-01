@@ -2,7 +2,7 @@ import { SpeechSynthesisConfig } from '../../../_types/SpeechSynthesisConfig';
 import cmd from '../../commandHandler';
 import getActiveWindowName from '../../getActiveWindowName';
 import { logLine } from '../../log';
-import texts, { textReplacer } from '../../text';
+import texts, { textReplacer } from '../../texts';
 
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig) => {

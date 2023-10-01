@@ -1,7 +1,7 @@
 import { SpeechSynthesisConfig } from '../../../_types/SpeechSynthesisConfig';
 import cmd from '../../commandHandler';
 import { logLine } from '../../log';
-import texts from '../../text';
+import texts from '../../texts';
 
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig) => {

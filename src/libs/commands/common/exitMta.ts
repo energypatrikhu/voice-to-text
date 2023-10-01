@@ -3,7 +3,7 @@ import cmd from '../../commandHandler';
 import getActiveWindowName from '../../getActiveWindowName';
 import { logLine } from '../../log';
 import { printText, sendKeys } from '../../pressKeys';
-import texts from '../../text';
+import texts from '../../texts';
 
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig) => {

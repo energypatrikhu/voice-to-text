@@ -8,7 +8,7 @@ import getActiveWindowName from './libs/getActiveWindowName.js';
 import getChromeInstallLocation from './libs/getChromeInstallLocation.js';
 import keyboardShortcutMapper from './libs/keyboardShortcutMapper.js';
 import { log, logLine } from './libs/log.js';
-import texts, { textReplacer } from './libs/text.js';
+import texts, { textReplacer } from './libs/texts.js';
 import uioHookWrapper from './libs/uioHookWrapper.js';
 import { checkAppUpdate, startAppUpdate } from './libs/update/checkAppUpdate.js';
 

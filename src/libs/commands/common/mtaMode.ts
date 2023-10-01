@@ -4,7 +4,7 @@ import { SpeechSynthesisConfig } from '../../../_types/SpeechSynthesisConfig';
 import cmd from '../../commandHandler';
 import __app from '../../config';
 import { logLine } from '../../log';
-import texts from '../../text';
+import texts from '../../texts';
 
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig) => {
