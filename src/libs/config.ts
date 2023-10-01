@@ -1,30 +1,33 @@
+import { log as nodeLog } from 'node:console';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 import { Config, Macro } from '../_types/Config';
 import getCurrentTime from './getCurrentTime';
-
-// import { log as nodeLog } from 'node:console';
-// import text from './text';
+import enLang from './langs/en';
 
 let __startupTime = getCurrentTime();
 let _configError = false;
 
-// function localLog(...message: any) {
-// 	nodeLog(...message);
-// }
-// function localLogLine(...message: any) {
-// 	localLog('');
-// 	localLog(...message);
-// }
-// function localDebugLog(...message: any) {
-// 	if (!config.logs.debug) return;
-// 	nodeLog(...message);
-// }
-// function localDebugLogLine(...message: any) {
-// 	if (!config.logs.debug) return;
-// 	localDebugLog('');
-// 	localDebugLog(...message);
-// }
+function localLog(...message: any) {
+	nodeLog(...message);
+}
+function localLogLine(...message: any) {
+	localLog('');
+	localLog(...message);
+}
+function localDebugLog(...message: any) {
+	if (!config.logs.debug) {
+		return;
+	}
+	nodeLog(...message);
+}
+function localDebugLogLine(...message: any) {
+	if (!config.logs.debug) {
+		return;
+	}
+	localDebugLog('');
+	localDebugLog(...message);
+}
 
 let configDefault: Config = {
 	logs: {
@@ -88,7 +91,7 @@ let config: Config = existsSync('config.json') ? JSON.parse(readFileSync('config
 let macros: Macro[] = existsSync('macros.json') ? JSON.parse(readFileSync('macros.json', { encoding: 'utf8' })) : [];
 
 if (!existsSync('macros.json')) {
-	// localLog(text().textFeedback.config.macro.notExists);
+	localLog(enLang.textFeedback.config.macro.notExists);
 
 	writeFileSync(
 		'macros.json',
@@ -126,42 +129,36 @@ function patchConfig(newConfig: { [x: string]: any }, oldConfig: { [x: string]: 
 
 if (JSON.stringify(Object.keys(configDefault).sort()) !== JSON.stringify(Object.keys(config).sort())) {
 	if (existsSync('config.json')) {
-		// localLogLine(text().textFeedback.config.config.broken);
+		localLogLine(enLang.textFeedback.config.config.broken);
 		config = patchConfig({}, config, configDefault) as Config;
 	} else {
-		// localLogLine(text().textFeedback.config.config.notExists);
+		localLogLine(enLang.textFeedback.config.config.notExists);
 		config = configDefault;
 	}
 
 	writeFileSync('config.json', JSON.stringify(config, null, 2), { encoding: 'utf8' });
 }
 
-// localDebugLog(text().textFeedback.config.config.wrapper);
-// for (let [confName, confValue] of Object.entries(config)) {
-// 	localDebugLog(` ${confName}:`, (confName.toLowerCase().endsWith('shortcut') ? confValue.join(' + ') : confValue) ?? '<empty>');
-// }
-// localDebugLog(text().textFeedback.config.config.wrapper);
-
-// localDebugLogLine(text().textFeedback.config.config.loaded);
+localDebugLogLine(enLang.textFeedback.config.config.loaded);
 
 if (config.input.holdToActivate && config.output.partial) {
 	_configError = true;
-	// localLogLine(text().textFeedback.config.config.error.partialHoldToActivate);
+	localLogLine(enLang.textFeedback.config.config.error.partialHoldToActivate);
 }
 
 if (config.output.partial && config.replacers.punctuationMarks) {
 	_configError = true;
-	// localLogLine(text().textFeedback.config.config.error.punctuationMarksPartial);
+	localLogLine(enLang.textFeedback.config.config.error.punctuationMarksPartial);
 }
 
 if (config.output.partial && config.replacers.gameChatPrefixes) {
 	_configError = true;
-	// localLogLine(text().textFeedback.config.config.error.gameChatPrefixesPartial);
+	localLogLine(enLang.textFeedback.config.config.error.gameChatPrefixesPartial);
 }
 
 if (config.output.partial && config.commands.enabled) {
 	_configError = true;
-	// localLogLine(text().textFeedback.config.config.error.commandsPartial);
+	localLogLine(enLang.textFeedback.config.config.error.commandsPartial);
 }
 
 while (_configError) {}
