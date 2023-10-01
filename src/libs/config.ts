@@ -107,7 +107,7 @@ if (!existsSync('macros.json')) {
 				},
 			],
 			null,
-			2,
+			'\t',
 		),
 		{ encoding: 'utf8' },
 	);
@@ -136,7 +136,7 @@ if (JSON.stringify(Object.keys(configDefault).sort()) !== JSON.stringify(Object.
 		config = configDefault;
 	}
 
-	writeFileSync('config.json', JSON.stringify(config, null, 2), { encoding: 'utf8' });
+	writeFileSync('config.json', JSON.stringify(config, null, '\t'), { encoding: 'utf8' });
 }
 
 localDebugLogLine(enLang.textFeedback.config.config.loaded);
