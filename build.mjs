@@ -18,6 +18,10 @@ console.log('App Version:', BUILD_TIME);
 // @ts-ignore
 await ADMZIP.addLocalFolderPromise(SRC_BASE);
 
+for (const entry of ADMZIP.getEntries()) {
+	entry.header.flags |= 0x0800;
+}
+
 await ADMZIP.writeZipPromise(FILE_PATH);
 
 await rename(FILE_PATH, join(DEST_BASE, VERSION));
