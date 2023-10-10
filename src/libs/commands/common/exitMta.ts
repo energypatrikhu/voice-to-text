@@ -2,7 +2,7 @@ import { SpeechSynthesisConfig } from '../../../_types/SpeechSynthesisConfig';
 import cmd from '../../commandHandler';
 import getActiveWindowName from '../../getActiveWindowName';
 import { logLine } from '../../log';
-import { printText, sendKeys } from '../../pressKeys';
+import { printText } from '../../pressKeys';
 import texts from '../../texts';
 
 cmd.registerCommand(
@@ -14,9 +14,7 @@ cmd.registerCommand(
 				return;
 			}
 
-			await sendKeys('f8');
-			await printText('exit');
-			await sendKeys('enter');
+			await printText('exit', true);
 		} catch (error) {
 			logLine(error);
 		}
