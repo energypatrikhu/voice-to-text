@@ -8,7 +8,7 @@ import texts from '../../texts';
 cmd.registerCommand(
 	async (speechSynthesis: SpeechSynthesisConfig) => {
 		try {
-			if (!['gta_sa.exe'].includes(await getActiveWindowName())) {
+			if (['SeeMTA'].includes(await getActiveWindowName())) {
 				logLine(texts().textFeedback.commands.exitMta.notInForeground);
 				speechSynthesis(texts().speechFeedback.commands.exitMta.notInForeground);
 				return;
