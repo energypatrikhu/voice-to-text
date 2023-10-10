@@ -4,7 +4,7 @@ import __app from './config';
 import { keyboard } from './hardware';
 import { logLine } from './log';
 
-export function printText(output: string) {
+export function printText(output: string, isCommand: boolean = false) {
 	return new Promise<void>(async (resolve) => {
 		try {
 			if (output == '') {
@@ -13,7 +13,7 @@ export function printText(output: string) {
 
 			let delay = __app.config.output.animated ? __app.config.output.typingDelay : 0;
 
-			if (__app.config.others.mtaConsoleInputMode) {
+			if (__app.config.others.mtaConsoleInputMode || isCommand) {
 				await keyboard.sendKey('f8', delay, delay);
 				await keyboard.printText(output, delay, delay);
 				await keyboard.sendKeys(['enter', 'f8'], delay, delay);
