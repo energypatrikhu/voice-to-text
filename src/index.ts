@@ -25,8 +25,10 @@ __app.urlPath = __appUrlPath;
 
 		logLine(textReplacer(texts().textFeedback.index.app.version, __app.version));
 
-		if (!(await checkAppUpdate(__app.version))) {
-			return await startAppUpdate(__app.version);
+		if (__app.config.updater.checkOnStartup) {
+			if (!(await checkAppUpdate(__app.version))) {
+				return await startAppUpdate(__app.version);
+			}
 		}
 
 		let chromeSpeechRecognitionOptions = {
@@ -46,15 +48,18 @@ __app.urlPath = __appUrlPath;
 		let { nodeEmitter, speechSynthesis } = await chromeInstance(browserInstance, chromeSpeechRecognitionOptions);
 
 		debugLogLine(texts().textFeedback.index.updater.starting);
-		let notifiedAboutUpdate = false;
-		setInterval(async () => {
-			if (!(await checkAppUpdate(__app.version, false)) && !notifiedAboutUpdate) {
-				notifiedAboutUpdate = true;
 
-				debugLogLine(texts().textFeedback.index.updater.updateAvailable);
-				speechSynthesis(texts().speechFeedback.index.updater.updateAvailable);
-			}
-		}, 5 * 60 * 1000);
+		if (__app.config.updater.autoCheck) {
+			let notifiedAboutUpdate = false;
+			setInterval(async () => {
+				if (!(await checkAppUpdate(__app.version, false)) && !notifiedAboutUpdate) {
+					notifiedAboutUpdate = true;
+
+					debugLogLine(texts().textFeedback.index.updater.updateAvailable);
+					speechSynthesis(texts().speechFeedback.index.updater.updateAvailable);
+				}
+			}, __app.config.updater.checkInterval * 1000);
+		}
 
 		let voiceRecognitionEnabled = false;
 		let autoReleaseTimer = null;
