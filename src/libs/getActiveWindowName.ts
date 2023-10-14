@@ -1,4 +1,7 @@
 import activeWindow from 'active-win';
+import { basename } from 'path';
+
+import { debugLogLine } from './debugLog';
 
 export default async function getActiveWindowName() {
 	const result = await activeWindow();
@@ -7,5 +10,7 @@ export default async function getActiveWindowName() {
 		return '';
 	}
 
-	return result.title;
+	debugLogLine({ result });
+
+	return basename(result.owner.path);
 }
